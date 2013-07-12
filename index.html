@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=utf-8 />
+    <title></title>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/master.css" />
+    <script type="text/javascript" src="js/jquery-1.3.1.min.js"></script>
+    <script type="text/javascript" src="js/bpopup.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script type="text/javascript">
+
+var show = false;
+$(document).ready(function() {		
+	
+	//Execute the slideShow
+	//slideShow();
+	
+	popup();
+	
+});
+
+function slideShow() {
+
+	//Set the opacity of all images to 0
+	$('#slide_show a').css({opacity: 0.0});
+	
+	//Get the first image and display it (set it to full opacity)
+	$('#slide_show a:first').css({opacity: 1.0});
+	
+	//Set the caption background to semi-transparent
+	$('#slide_show .caption').css({opacity: 0.7});
+
+	//Resize the width of the caption according to the image width
+	$('#slide_show .caption').css({width: $('#slide_show a').find('img').css('width')});
+	
+	//Get the caption of the first image from REL attribute and display it
+	$('#slide_show .content').html($('#slide_show a:first').find('img').attr('rel'))
+	.animate({opacity: 0.7}, 400);
+	
+	//Call the gallery function to run the slideshow, 6000 = change to next image after 6 seconds
+	setInterval('slide()',10000);
+	
+}
+
+function slide() {
+	
+	//if no IMGs have the show class, grab the first image
+	var current = ($('#slide_show a.show')?  $('#slide_show a.show') : $('#slide_show a:first'));
+
+	//Get next image, if it reached the end of the slideshow, rotate it back to the first image
+	var next = ((current.next().length) ? ((current.next().hasClass('caption'))? $('#slide_show a:first') :current.next()) : $('#slide_show a:first'));	
+	
+	//Get next image caption
+	var caption = next.find('img').attr('rel');	
+	
+	//Set the fade in effect for the next image, show class has higher z-index
+	next.css({opacity: 0.0})
+	.addClass('show')
+	.animate({opacity: 1.0}, 1000);
+
+	//Hide the current image
+	current.animate({opacity: 0.0}, 1000)
+	.removeClass('show');
+	
+	//Set the opacity to 0 and height to 1px
+	$('#slide_show .caption').animate({opacity: 0.0}, { queue:false, duration:0 }).animate({height: '1px'}, { queue:true, duration:300 });	
+	
+	//Animate the caption, opacity to 0.7 and heigth to 100px, a slide up effect
+	$('#slide_show .caption').animate({opacity: 0.7},100 ).animate({height: '35px'},500 );
+	
+	//Display the content
+	$('#slide_show .content').html(caption);
+	
+	
+}
+
+function popup(){
+		if(show == false) {
+			hidePopup();
+		}
+		else {
+			showPopup();
+		}
+}
+
+function hidePopup() {
+	$('#popup').css({opacity: 0.0});
+	show = true;
+}
+
+function showPopup() {
+    $('#popup').css({opacity: 1.0});
+    show = false;
+}
+
+
+</script>
+    <!--[if IE]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+  </head>
+  <body>
+   <div id="wrapper">
+     <div id="header">
+       <img class="logo" src="images/jack_dancing_logo.png" alt="Jack Dancin Logo"/>
+     </div>
+     
+    <div id="link">
+    	<a href="https://www.facebook.com/JackDancing">
+       <img class="icons" src="images/icons/facebook.png" alt="Facebook" width="63"/>
+       </a>
+       <a href="http://jackdancing.restorm.com/">
+       <img class="icons" src="images/icons/restorm.png" alt="Facebook" width="126"/> 
+       </a>
+       
+       <a href="http://soundcloud.com/jack-dancing">
+       <img class="icons" src="images/icons/soundcloud.png" alt="Facebook" width="90"/> 
+       </a>
+       <a href="http://mx3.ch/artist/jackdancing">
+       <img class="icons" src="images/icons/mx3.png" alt="Facebook" width="117"/> 
+       </a>
+	</div>
+       
+     <div class="clear"></div>
+     	<div id="new_song">
+     	<a href="" onclick="showPopup();">
+     		<img src="images/newsongshere.png" alt="NEW SONG" height="200"/>
+     	</a>
+     	<div id="popup">
+     		<iframe width="100%" height="450" scrolling="no" frameborder="no" src="http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Fusers%2F11106034&show_artwork=true"></iframe>
+     	</div>
+	</div>
+     
+     <div id="image_slider">
+     	<div id="slide_show">
+     
+     		<a class="show">
+				<img src="images/image0_small.jpg" alt="Bild 1" width="500" height="330" rel="Fotos by Gian Luca Hofmann at 'parterre'"/>
+			</a>
+			
+			<!-- 
+<a>
+				<img src="images/image4.jpg" alt="Bild 0" width="360" rel="<h3>Bild 2</h3>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "/>
+			</a>
+ -->
+	
+			<a>
+				<img src="images/image1_small.jpg" alt="Bild 2" width="500" height="330" rel="Fotos by Gian Luca Hofmann at 'Block 56'"/>
+			</a>
+	
+			<a>
+				<img src="images/image2_small.jpg" alt="Bild 3" width="500" height="330" rel="Fotos by Gian Luca Hofmann at 'Block 56'"/>
+			</a>
+
+			<a>
+				<img src="images/image3_small.jpg" alt="Bild 4" width="500" height="330" rel="Fotos by Gian Luca Hofmann at 'Block 56'"/>
+			</a>
+    		<div class="caption">
+    			<div class="content"></div>
+    		</div>
+		</div>
+
+	</div>
+     <div class="clear"></div>
+     <div id="content">
+     <p>
+		<u>Biografie</u>
+	</p>
+	<p>
+		Die fünf Musiker von Jack Dancing bringen verschiedenste Einflüsse von Punkrock und Alternative, über Metal bis hin zu Pop (Denial, Bellefast Express, Amy Goes Down, The Duchettes) mit und stecken das Ganze in ein Kleid namens Folk. Die Sängerin und die Jungs werfen mit Hooklines um sich, welche in Bars und Clubs zum Mitsingen animieren. Akkustischer Rock n Roll der dich nicht still sitzen und dich den den nächsten Drink bestellen lässt. Prost!
+	</p>
+	<br />
+	<p>
+		<u>Biography</u>
+	</p>
+	<p>
+		Before forming Jack Dancing these five musicians gained experience in various rock bands. Different influences, and by different we mean everything between Metal and Pop (Denial, Bellefast Express, Amy Goes Down, The Duchet- tes), have been put in a costume called Folk. The female singer and the lads create hooklines that will make audien- ces, from pubs to clubs, sing along. Acoustic Rock n Roll that makes you dance. And order another drink. Cheers!
+	</p>
+     </div>
+     <div class="clear"></div>
+     
+     <div id="footer">
+     	<p>
+     	Kontakt:
+    	 </p>
+     	<p><a href="mailto:jack.dancing.booking@gmail.com">jack.dancing.booking@gmail.com</a>, +41 (0)79 558 53 20</p>
+     </div>
+     <div class="copyrights">
+	     All songs and artwork copyright by Jack Dancing
+     </div>
+   </div>
+  </body>
+</html> 

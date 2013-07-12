@@ -1,0 +1,137 @@
+* {
+    padding: 0;
+    margin: 0;
+} 
+.clear {
+	float: left;
+    clear:both;
+    
+}
+ 
+/*=======================================================*/
+body {
+	background: black;
+	font-family:  Arial;
+	font-size: 13px;
+	line-height: 12pt;
+	color: #000000;	
+}
+/*=======================================================*/
+#wrapper {
+	width: 1100px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 50px;
+	padding-bottom: 60px;
+	padding-top: 20px;
+	background: #ffffff;
+	
+	background:-moz-linear-gradient(top, #fff 35%, #E9E1B6 100%); /* Firefox */
+	background:-webkit-linear-gradient(top, #fff 35%, #E9E1B6 100%); /* Safari, Chrome */
+	background:-o-linear-gradient(top, #fff 35%, #E9E1B6 100%); /* Opera */
+	background:-ms-linear-gradient(top, #fff 35%, #E9E1B6 100%); /* IE */
+	background:-olinear-gradient(top, #fff 35%, #E9E1B6 100%); /* W3C Standard */
+	
+}
+
+	#wrapper .copyrights{
+		font-size: 10px;
+		color: #646362;
+	}
+
+#header {
+	width: 600px;
+    margin-top: 60px;
+    padding-bottom: 60px;
+    border-bottom: 2px solid #000000;
+}
+#header .logo {
+	width: 500px;
+}
+
+#image_slider {
+	width: 600px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+    border-bottom: 2px solid #000000;
+}
+
+#slide_show {
+	position:relative;
+	height:330px
+}
+	#slide_show a {
+		float:left;
+		position:absolute;
+	}
+	
+	#slide_show a img {
+		border:none;
+	}
+	
+	#slide_show a.show {
+		z-index:500
+	}
+
+	#slide_show .caption {
+		z-index:600; 
+		background-color:#000; 
+		color:#ffffff; 
+		height:35px; 
+		width:100%; 
+		position:absolute;
+		bottom:0;
+	}
+
+	#slide_show .caption .content {
+		margin: 5px
+	}
+	
+	#slide_show .caption .content h3 {
+		margin:0;
+		padding:0;
+		color:#1DCCEF;
+	}
+	
+#new_song {
+	float: right;
+	padding-right: 200px;
+
+}
+
+#popup { 
+	padding-left: 20px;
+	/*display:none;*/
+	
+}
+/*=======================================================*/
+#content {
+    width: 500px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#link {
+	width: 600px;
+	padding-bottom 10px;
+	border-bottom: 2px solid #000000;
+}
+
+#link a {
+	padding-right: 20px;
+	text-decoration: NONE;
+}
+
+#link .icons {
+	margin-left: 5px;
+}
+/*=======================================================*/
+#footer {
+	width: 600px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-bottom 10px;
+	border-bottom: 2px solid #000000;
+	border-top: 2px solid #000000;
+	
+}
